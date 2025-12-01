@@ -1,0 +1,33 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE PROC [dbo].[prs_tblCountryUpdate] 
+    @fldId smallint,
+    @fldNameCountry nvarchar(100),
+	@inputid int,
+	@fldTimeStamp int
+AS 
+
+	BEGIN TRAN
+	Declare @flag tinyint
+	if not exists(select * from [tblCountry] where fldId=@fldId )
+			set @flag= 2 
+		else if exists( select * from [tblCountry] where fldId=@fldId and fldTimeStamp=@fldTimeStamp)
+			set @flag=1 
+		else if not exists(select * from [tblCountry] where fldId=@fldId and fldTimeStamp=@fldTimeStamp)
+			set @flag=0 
+	
+	if(@flag=1)
+	begin
+	UPDATE [dbo].[tblCountry]
+	SET    [fldNameCountry] = @fldNameCountry,fldInputId=@inputid
+	WHERE  fldId=@fldId
+	if(@@Error<>0)
+        rollback   
+	select @flag as flag
+	end
+	else
+		select @flag as flag
+	COMMIT
+GO

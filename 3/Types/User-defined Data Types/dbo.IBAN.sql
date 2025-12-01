@@ -1,0 +1,2 @@
+CREATE TYPE [dbo].[IBAN] FROM varchar (26) NOT NULL
+GO
