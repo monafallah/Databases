@@ -1,0 +1,15 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_tr_AcquireLock] 
+	@Key varchar(255) = 0
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	INSERT INTO [dbo].[tr_AppLock] 
+	VALUES (@Key)
+END
+GO

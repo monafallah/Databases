@@ -1,0 +1,17 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE FUNCTION [Drd].[fn_IdCodeElamAvarez](@Fishid INT)
+RETURNS NVARCHAR(MAX)
+AS
+BEGIN
+DECLARE @id NVARCHAR(max)=''
+
+SELECT @id=CAST(fldCodeElamAvarezId AS NVARCHAR(50))+';'+@id FROM Drd.tblSodoorFish_Detail
+WHERE fldFishId=@Fishid
+
+RETURN @id
+
+end
+GO

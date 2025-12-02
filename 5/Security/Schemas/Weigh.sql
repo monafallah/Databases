@@ -1,0 +1,3 @@
+CREATE SCHEMA [Weigh]
+AUTHORIZATION [dbo]
+GO

@@ -1,0 +1,16 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_tr_GetMembersInSet] 
+	@Key varchar(255) = 0
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+SELECT [Member] 
+FROM [dbo].[tr_Set] 
+WHERE [Id] = @Key
+END
+GO

@@ -1,0 +1,26 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE PROC [Drd].[spr_tblPspModelInsert] 
+ 
+    @fldPspId int,
+    @fldModel nvarchar(100),
+	@fldMultiHesab BIT,
+    @fldUserId int,
+    @fldDesc nvarchar(MAX)
+    
+AS 
+	
+	BEGIN TRAN
+	SET @fldModel=Com.fn_TextNormalize(@fldModel)
+	SET @fldDesc=Com.fn_TextNormalize(@fldDesc)
+	declare @fldID int 
+	select @fldID =ISNULL(max(fldId),0)+1 from [Drd].[tblPspModel] 
+	INSERT INTO [Drd].[tblPspModel] ([fldId], [fldPspId], [fldModel],fldMultiHesab, [fldUserId], [fldDesc], [fldDate])
+	SELECT @fldId, @fldPspId, @fldModel,@fldMultiHesab, @fldUserId, @fldDesc, getdate()
+	if (@@ERROR<>0)
+		ROLLBACK
+
+	COMMIT
+GO

@@ -1,0 +1,14 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE FUNCTION [Com].[fn_GetUserByUserId](@UserId INT)
+RETURNS @temp TABLE(Id INT,UserId int)
+AS
+BEGIN
+	INSERT INTO @temp
+     SELECT fldId,fldUserId FROM Com.tblUser
+	 WHERE fldUserId=@UserId
+RETURN
+END
+GO

@@ -1,0 +1,15 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE FUNCTION [Com].[fn_SumItemMohasebat](@MohasedatId INT) 
+RETURNS INT
+
+AS
+BEGIN
+DECLARE @Sum INT
+SELECT @Sum=SUM(ISNULL(fldMablagh,0)) FROM Pay.tblMohasebat_Items 
+WHERE fldMohasebatId=@MohasedatId 
+RETURN ISNULL(@Sum,0)
+END
+GO

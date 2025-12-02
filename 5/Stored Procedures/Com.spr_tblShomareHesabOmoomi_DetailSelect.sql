@@ -1,0 +1,28 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE PROC [Com].[spr_tblShomareHesabOmoomi_DetailSelect] 
+	@fieldname nvarchar(50),
+	@Value nvarchar(50),
+	@h int
+AS 
+	BEGIN TRAN
+	if (@h=0) set @h=2147483647
+	SET @Value=Com.fn_TextNormalize(@Value)
+	if (@fieldname=N'fldId')
+	SELECT top(@h) [fldId], [fldShomareHesabId], [fldTypeHesab], [fldUserId], [fldDesc], [fldDate],CASE WHEN fldTypeHesab = 0 THEN N'حقوق' WHEN fldTypeHesab = 1 THEN N'بن کارت' END AS NoeHesab ,fldShomareKart
+	FROM   [Com].[tblShomareHesabOmoomi_Detail] 
+	WHERE  fldId = @Value
+
+	if (@fieldname=N'fldDesc')
+	SELECT top(@h) [fldId], [fldShomareHesabId], [fldTypeHesab], [fldUserId], [fldDesc], [fldDate],CASE WHEN fldTypeHesab = 0 THEN N'حقوق' WHEN fldTypeHesab = 1 THEN N'بن کارت' END AS NoeHesab ,fldShomareKart
+	FROM   [Com].[tblShomareHesabOmoomi_Detail] 
+	WHERE  fldDesc like @Value
+
+	if (@fieldname=N'')
+	SELECT top(@h) [fldId], [fldShomareHesabId], [fldTypeHesab], [fldUserId], [fldDesc], [fldDate],CASE WHEN fldTypeHesab = 0 THEN N'حقوق' WHEN fldTypeHesab = 1 THEN N'بن کارت' END AS NoeHesab ,fldShomareKart
+	FROM   [Com].[tblShomareHesabOmoomi_Detail] 
+
+	COMMIT
+GO

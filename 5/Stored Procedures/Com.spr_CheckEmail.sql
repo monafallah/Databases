@@ -1,0 +1,19 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE PROC [Com].[spr_CheckEmail](@Email NVARCHAR(100))
+AS 
+BEGIN
+DECLARE @t BIT ,@count INT
+
+
+set @t= Com.fn_AppEmailCheck(@Email)  
+IF(@t=0) 
+BEGIN
+	SELECT CAST( 0 AS BIT)AS fldType
+END
+ELSE
+	SELECT CAST(1 AS BIT)AS fldType
+END
+GO

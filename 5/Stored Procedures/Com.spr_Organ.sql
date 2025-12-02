@@ -1,0 +1,12 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE PROC [Com].[spr_Organ] (@OrganId INT)
+AS
+BEGIN
+DECLARE @temp TABLE (id INT)
+INSERT into  @temp
+VALUES( @organId)
+END
+GO

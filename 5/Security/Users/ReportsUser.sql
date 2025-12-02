@@ -1,0 +1,2 @@
+CREATE USER [ReportsUser] WITHOUT LOGIN
+GO

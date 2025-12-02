@@ -1,0 +1,7 @@
+CREATE TABLE [dbo].[tr_AppLock]
+(
+[Id] [nvarchar] (255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[tr_AppLock] ADD CONSTRAINT [PK_tr_AppLock] PRIMARY KEY CLUSTERED ([Id]) ON [PRIMARY]
+GO

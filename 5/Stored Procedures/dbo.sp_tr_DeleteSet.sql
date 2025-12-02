@@ -1,0 +1,16 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_tr_DeleteSet] 
+	@Key varchar(255) = 0
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	DELETE
+	FROM [dbo].[tr_Set] 
+	WHERE [Id] = @Key
+END
+GO
