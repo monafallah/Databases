@@ -6,7 +6,7 @@ CREATE proc [ACC].[spr_CheckDocStatus]
  @DocumentRecord_HeaderId int
  as
  begin tran
-	declare @DocStatus bit=0,@id int=0,@MaxId int=0
+	declare @DocStatus bit=0,@id int=0,@MaxId int=0,@test int
 
 
 	select @MaxId=max(fldid) from acc.tblDocumentRecord_Header1
