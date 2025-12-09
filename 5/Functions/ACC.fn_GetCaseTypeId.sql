@@ -5,7 +5,7 @@ GO
 CREATE function [ACC].[fn_GetCaseTypeId](@ModuleErsalId int,@Document_HedearId int)
 returns  int
 begin
-declare @CaseTypeId int
+declare @CaseTypeId int,@id int
 
 if(@ModuleErsalId=13)
 	select @CaseTypeId=c.fldCaseTypeId from acc.tblDocumentRecord_Details as d 
